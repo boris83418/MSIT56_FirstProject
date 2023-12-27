@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try yourself for planning</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&family=Noto+Sans+TC:wght@100&family=Noto+Serif+JP:wght@200&family=Roboto+Mono:wght@700&display=swap');
+
+        #showarea:hover img {
+            transform: scale(2);
+            transition: transform 0.3s ease;
+        }
+
+        body {
+            background-image: url("../Picture/mainvisual_01.png");
+            background-size: cover;
+            color: azure;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 1.7rem;
+
+        }
+
+        select,
+        #JRcost,
+        input,
+        button {
+            font-size: 1.5rem;
+        }
+
+        h1 {
+            text-align: center;
+
+        }
+
+        table {
+            width: 100px;
+            border-spacing: 0;
+        }
+
+        th,
+        td {
+            padding: 5px 10px;
+            border: 1px solid azure;
+            text-align: center;
+        }
+
+        td>input {
+            width: 90%;
+        }
+
+        input {
+            width: 50%;
+        }
+
+        #mytable {
+            width: 80%;
+        }
+
+        #summary {
+            width: 70%;
+        }
+
+        #totalcost,
+        #jpyen,
+        #JR_Cost,
+        #others_Cost {
+            width: 200px;
+        }
+
+        td>select {
+            width: max-content;
+        }
+
+        td>img {
+            width: 200px;
+            background-color: azure;
+        }
+
+        .back-to-home {
+            position: fixed;
+            height: 90px;
+            width: 90px;
+            bottom: 20px;
+            right: 20px;
+            opacity: 0.5;
+            border: solid black;
+
+        }
+
+        /* #Chart {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        } */
+    </style>
+</head>
+
+<body id="body">
+    <h1>Travel SKD and Cost Planning</h1>
+    <h2>Pass Ticket Choose</h2>
+    <a href="../Index2_final.html"><img src="../Picture/homepage.jpg" alt="" class="back-to-home"></a>
+    <table id="summary">
+        <tr>
+            <th></th>
+            <th>Ticket Type</th>
+            <th>Ticket Price(NTD)</th>
+            <th>Using Area</th>
+        </tr>
+        <tr>
+            <td>JR Pass</td>
+            <td>
+                <select name="JRPASS" onchange="JRselect()" id="JRPASS">
+                    <option style="display: none;">請選擇</option>
+                    <optgroup label="全日本">
+                        <option value="6000" id="pass1">全日本pass</option>
+                    </optgroup>
+                    <optgroup label="北海道">
+                        <option value="3000" id="pass2">北海道(登別區／富良野區)</option>
+                        <option value="4000" id="pass3">東北＋南北海道</option>
+                        <option value="5000" id="pass4">東日本＋南北海道</option>
+                    </optgroup>
+                    <optgroup label="東日本(關東/東北)">
+                        <option value="100" id="pass5">東京廣域周遊券</option>
+                        <option value="100" id="pass6">東北地區</option>
+                    </optgroup>
+                    <optgroup label="中部/北陸">
+                        <option value="100">長野＋新潟地區</option>
+                        <option value="100">北陸拱形</option>
+                        <option value="100">北陸地區鐵路</option>
+                        <option value="100">富士山＋靜岡地區</option>
+                        <option value="100">關西＋北陸地區</option>
+                        <option value="100">高山＋北陸地區</option>
+                        <option value="100">立山黑部＋高山＋松本地區</option>
+                    </optgroup>
+                    <optgroup label="西日本(中部/關西/山陽山陰/四國)">
+                        <option value="100">JR西部全區鐵路通票</option>
+                        <option value="100">關西地區</option>
+                        <option value="100">關西廣域</option>
+                        <option value="100">關西＋廣島地區</option>
+                        <option value="100">伊勢＋熊野＋和歌山地區 </option>
+                        <option value="100">廣島＋山口地區</option>
+                        <option value="100">山陽＋山陰＋北九州地區</option>
+                        <option value="100">山陽＋山陰</option>
+                        <option value="100">香川迷你鐵路＋渡輪</option>
+                        <option value="100">山陰＋岡山地區</option>
+                        <option value="100">岡山＋廣島＋山口地區</option>
+                        <option value="100">瀨戶內地區</option>
+                    </optgroup>
+                    <optgroup label="九州">
+                        <option value="100">全+北+南九州</option>
+                        <option value="100">山陽＋山陰＋北九州地區</option>
+                    </optgroup>
+                </select>
+            </td>
+            <td><input type="text" id="JRcost" readonly style="text-align: center;"></td>
+            <td id="showarea"></td>
+        </tr>
+
+    </table>
+    <br>
+
+
+
+    <h2>Simulate Table</h2>
+    <div style="display: flex;">
+        <div style="flex: 4;">
+            <label for="">日幣匯率:</label>
+            <input type="text" id="jpyen" value="0.22">
+            <br><br>
+
+
+            <label for="">JR_Cost(NTD):</label>
+            <input type="text" id="JR_Cost" readonly>
+            <br><br>
+
+            <label for="">Others_Cost(NTD):</label>
+            <input type="text" id="others_Cost" readonly>
+            <br><br>
+
+            <label for="">Total_Cost(NTD):</label>
+            <input type="text" id="totalcost" readonly>
+            <br><br>
+        </div>
+        <div style="flex: 6;" id="Chart">
+            <canvas id="myChart"></canvas>
+        </div>
+
+
+    </div>
+    <div style="display: inline-block;">
+        <button onclick="addrow()">Add row for input more</button>
+        <button onclick="save()">Save data and simulate</button>
+        <button onclick="Reset()">Reset table</button>
+    </div>
+
+    <hr>
+    <div>
+        <table id="mytable"></table>
+    </div>
+
+
+
+    <script type="text/javascript">
+        // 創造table主體
+        // let mytable = document.createElement('table');
+        document.getElementById('body').appendChild(mytable);
+        // 創造第一列元素
+        let row1 = document.createElement('tr');
+        let rowname1 = ['Day', 'Location_from', 'Location_to', 'StayTime', 'Traffic_type', 'Traffic_price', 'Delete']
+    
+        // TODO:
+        let myChart = null
+    
+        window.onload = function firstrow() {
+          for (i = 0; i < rowname1.length; i++) {
+            var b = document.createElement('th');
+            b.innerText = rowname1[i];
+            row1.appendChild(b)
+    
+          }
+          mytable.appendChild(row1);
+        }
+    
+        function check1() {
+          let currentrow = document.getElementById('mytable').rows.length + 1
+          return currentrow;
+        }
+    
+        function check2(id) {
+          console.log(id);
+          document.getElementById('mytable').children[id].children[1].children[0].value = document.getElementById('mytable').children[id - 1].children[2].children[0].value;
+        }
+    
+    
+        function addrow() {
+          let row = document.createElement('tr');
+          if (document.getElementById("mytable").rows.length == 1) {
+            for (j = 0; j < rowname1.length - 1; j++) {
+              var b = document.createElement('td');
+              if (j == 0) {
+                b.innerHTML = "<input type='number' value=1 min='1'>";
+                row.appendChild(b);
+              }
+              else if (j == 1) {
+                b.innerHTML = "<input type='text' value='Airport'>";
+                row.appendChild(b);
+              } else if (j == 2) {
+                b.innerHTML = "<input type='text' value='Hotel' onchange='check1();'>";
+                row.appendChild(b);
+    
+              } else if (j == 3) {
+                b.innerHTML = "<input type='number' value=1 min='0'>";
+                row.appendChild(b);
+              } else if (j == 4) {
+                b.innerHTML = "<select  style='width: 100%;'><option value='JR'>JR</option><option value='Metro'>Metro</option><option value='Bus'>Bus</option><option value='Taxi'>Taxi</option></select>";
+                row.appendChild(b);
+              }
+              else {
+                b.innerHTML = "<input type='number' value=0 min='0'>";
+                row.appendChild(b);
+              }
+            }
+    
+          } else {
+            var rowcount = check1()
+            for (i = 0; i < rowname1.length - 1; i++) {
+              var c = document.createElement('td');
+              var d = document.getElementById('mytable').children[document.getElementById('mytable').rows.length - 1].children[0].children[0].value;
+              var e = document.getElementById('mytable').children[document.getElementById('mytable').rows.length - 1].children[2].children[0].value;
+              var g = document.getElementById('mytable').children[document.getElementById('mytable').rows.length - 1].children[0].children[0];
+              if (i == 0) {
+                c.innerHTML = "<input type='text' id='" + rowcount + "_" + i + "'  value=" + d + ">";
+                row.appendChild(c);
+              } else if (i == 1) {
+                c.innerHTML = "<input type='text' id='" + rowcount + "_" + i + "'  value=" + e + " >";
+                row.appendChild(c);
+              } else if (i == 2) {
+                c.innerHTML = "<input type='text' placeholder='please input your location'onchange='check2(" + rowcount + ")' id='" + rowcount + "_" + i + "'>";
+                row.appendChild(c);
+              } else if (i == 3) {
+                c.innerHTML = "<input type='number' value=1 min='0' id='" + rowcount + "_" + i + "'>";
+                row.appendChild(c);
+              } else if (i == 4) {
+                c.innerHTML = "<select id='" + rowcount + "_" + i + "'  style='width: 100%;'><option value='JR'>JR</option><option value='Metro'>Metro</option><option value='Bus'>Bus</option><option value='Taxi'>Taxi</option></select>";
+                row.appendChild(c);
+              } else {
+                c.innerHTML = "<input type='number' value=0 min='0' id='" + rowcount + "_" + i + "'>";
+                row.appendChild(c);
+              }
+            }
+          }
+    
+    
+          //     if (j < (rowname1.length - 2)) {
+          //         b.innerHTML = "<input type='text' value=0>";
+          //         row.appendChild(b);
+          //     }
+          //     else {
+          //         b.innerHTML = "<input type='number' value=0>";
+          //         row.appendChild(b);
+          //     }
+          // }
+    
+    
+          let td = document.createElement('td');
+          td.innerHTML = (`<a href='javascript:;'style="color: red">delete</a>`);
+          row.appendChild(td);
+          mytable.appendChild(row);
+          //刪除ROW
+          let a = td.children[0]
+          a.addEventListener('click', () => {
+            let parent = a.parentNode.parentNode;
+            console.log(parent);
+            parent.remove();
+          })
+        }
+    
+        function Reset() {
+          let parent = document.getElementById('mytable').children.length
+          console.log(parent)
+          for (z = 1; z < parent; z++) {
+            if (parent == 1) {
+              console.log("no delete")
+            } else {
+              let parent2 = document.getElementById('mytable').children[1];
+              parent2.remove()
+            }
+          }
+        }
+    
+        function save() {
+          var JR = 0
+          var Others = 0
+          var totalcost = 0
+          var jpyen = 0
+    
+          for (i = 1; i < mytable.childNodes.length; i++) {
+            if (mytable.children[i].children[4].children[0].value == 'JR') {
+              JR += parseInt(mytable.children[i].children[5].children[0].value);
+            } else {
+              Others += parseInt(mytable.children[i].children[5].children[0].value);
+            }
+          }
+    
+
+    
+          jpyen = document.getElementById("jpyen").value;
+          totalcost = JR + Others;
+          document.getElementById('JR_Cost').value = JR * jpyen;
+          document.getElementById('others_Cost').value = Others * jpyen;
+          document.getElementById('totalcost').value = totalcost * jpyen;
+
+          if ((JR* jpyen) > parseInt(document.getElementById('JRPASS').value)) {
+            document.getElementById("JRcost").style.backgroundColor = "green";
+            alert("✅, Good Planning, Recommend to buy");
+          } else {
+            document.getElementById("JRcost").style.backgroundColor = "red";
+            alert("❌, Please add more planning, not recommend to buy");
+          }
+          setchart('myChart', ['JR(NT$)', 'Others(NT$)', 'TTL(NT$)'], [JR * jpyen, Others * jpyen, totalcost * jpyen], 'Travel Cost Summary');
+        }
+    
+        function setchart(id, x, y, chartTitle) {
+          console.log(id)
+    
+          var ctx = document.getElementById('myChart');
+          document.getElementById("myChart").style.cssText = `background-color: azure;`;
+    
+          var chartOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            title: {
+              display: true,
+              text: chartTitle, // 圖表標題
+              fontColor: 'black',
+              fontSize: 20, // 設定字體大小
+              position: 'top',
+            },
+            legend: {
+              position: 'right',
+              display: false
+            },
+            scales: {
+              xAxes: [{
+                ticks: {
+                  fontSize: 16, // 設定 X 座標字體大小
+                  fontWeight: 'bold', // 加粗 X 座標字體
+                }
+              }],
+              yAxes: [{
+                ticks: {
+                  fontSize: 16, // 設定 Y 座標字體大小
+                  fontWeight: 'bold', // 加粗 Y 座標字體
+                }
+              }]
+            }
+          };
+    
+          // 获取屏幕的宽度
+          var clientWidth = document.documentElement.clientWidth;
+          // 根据设计图中的 canvas 画布的占比进行设置
+          var canvasWidth = Math.floor(clientWidth * 250 / 720);
+          var canvasheight = Math.floor(clientWidth * 150 / 720);
+          ctx.setAttribute('width', canvasWidth + 'px');
+          ctx.setAttribute('height', canvasheight + 'px');
+    
+          // const myLineChart = new Chart(ctx, config)
+    
+          // if (ctx instanceof Chart) {
+          //   console.log(myChart)
+          //   console.log('r')
+          //   myChart.destroy();
+          // }
+    
+          // TODO:
+          // myChart 缺少
+          // myChart === null falsy
+          if (myChart) {
+            myChart.destroy()
+          }
+    
+          myChart = new Chart(ctx, {
+            type: "bar",
+            data: {
+              labels: x,
+              datasets: [{
+                label: "Summary Cost(NT$)",
+                data: y,
+                backgroundColor: [
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                ],
+                borderWidth: 1
+              }]
+            },
+            options: chartOptions
+          });
+    
+    
+        }
+    
+        function JRselect() {
+          for (i = 1; i < document.getElementById("JRPASS").options.length; i++) {
+            if (document.getElementById("JRPASS").options[i].selected == true) {
+              document.getElementById('JRcost').value = document.getElementById("JRPASS").options[i].value;
+              document.getElementById('showarea').innerHTML = `<img src="../Picture/${i}.png" alt="">`
+            }
+          }
+        }
+      </script>
+
+</body>
+
+</html>

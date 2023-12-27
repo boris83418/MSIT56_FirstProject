@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>關東-關西自由行</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* scroll */
+        div.scroll-container {
+            background-color: #333;
+            overflow: auto;
+            white-space: nowrap;
+            padding: 10px;
+            height: 600px;
+        }
+
+        div.scroll-container img {
+            padding: 10px;
+            height: 600px;
+        }
+
+
+        /* Create two equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 50%;
+            padding: 10px;
+        }
+
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Style the buttons */
+        .btn {
+            border: none;
+            outline: none;
+            padding: 12px 16px;
+            background-color: #f1f1f1;
+            cursor: pointer;
+            width: 50%;
+            font-size: 20px;
+        }
+
+        .btn:hover {
+            background-color: #ddd;
+        }
+
+        .btn.active {
+            background-color: #666;
+            color: white;
+            width: 50%;
+        }
+
+        .imgback {
+            position: relative;
+        }
+
+        .headback {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            opacity: 0.5;
+        }
+
+        .content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 70px;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+
+        h1 {
+            font-size: 60px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 40px;
+            color: #ffffff;
+            text-align: center;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        div>img {
+            height: 300px;
+            width: 500px;
+        }
+
+        .logo {
+            height: 200px;
+            width: 400px;
+
+        }
+
+        .bck {
+            background-image: url("../Picture/backgroundimagekansai.jpg");
+            background-color: rgba(0, 0, 0, 0.8);
+            background-blend-mode: multiply;
+            background-attachment: fixed;
+        }
+
+        p {
+            color: #ffffff;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        pre {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        label {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        .name {
+            color: #ffffff;
+            font-size: 35px;
+            font-family: 'Noto Sans JP', sans-serif;
+            margin-left: 20px;
+
+        }
+
+        li {
+            color: #ffffff;
+            font-size: 27px;
+            font-family: 'Noto Sans JP', sans-serif;
+            margin-left: 20px;
+
+        }
+
+        .back-to-home {
+            position: fixed;
+            height: 90px;
+            width: 90px;
+            bottom: 20px;
+            right: 20px;
+            opacity: 0.5;
+            border: solid black;
+
+        }
+
+        form,
+        input,
+        label {
+            margin-left: 20px;
+        }
+
+        input[type="checkbox"]:checked+label {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="imgback">
+        <img class="headback" src="../Picture/Kansaibackgroud.png" alt="">
+        <div class="content">
+            關東-關西 15 Days自由行
+        </div>
+        <a href="../Index2_final.html"><img src="../Picture/homepage.jpg" alt="" class="back-to-home"></a>
+    </div>
+
+
+    <div id="btnContainer" style="text-align: center; display: flex;">
+        <button class="btn" onclick="listView()"><i class="fa fa-bars"></i> List</button>
+        <button class="btn active" onclick="gridView()"><i class="fa fa-th-large"></i> Grid</button>
+    </div>
+    <br>
+    <div class="bck">
+        <div class="row">
+            <div class="column">
+                <h2>Checklist</h2>
+                <div style="font-size: 29px; color: #ffffff;">
+                    <form action="">
+                        <input type="checkbox" id="passport" name="" value="">
+                        <label for="passport">PassPort</label><br><br>
+                        <input type="checkbox" id="jrpass" name="" value="">
+                        <label for="jrpass">JR PASS</label><br><br>
+                        <input type="checkbox" id="assurance" name="" value="">
+                        <label for="assurance">旅遊保險</label><br><br>
+                        <input type="checkbox" id="card" name="" value="">
+                        <label for="card">小黃卡及Visit Japan Web</label><br><br>
+                        <input type="checkbox" id="yen" name="" value="">
+                        <label for="yen">日幣</label><br><br>
+                    </form>
+                </div>
+            </div>
+            <div class="column">
+                <h2>機票</h2>
+                <p style="font-size: 29px; color: #ffffff;">03/26 00:40➜0410 桃園✈️羽田</p>
+                <p style="font-size: 29px; color: #ffffff;">04/07 13:10➜1500 大阪✈️桃園</p><br><br>
+                <div style="display: flex; color: #ffffff;">
+                    <img class="logo" src="../Picture/tigerairlogo.jpg" alt="">
+                    <img class="logo" src="../Picture/starluxlogo.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="column" style="height: 2400px;">
+                <h2>住宿</h2>
+                <div>
+                    <pre style="font-size: 35px; color: #ffffff;  text-align: center;">東京: 秋葉原</pre>
+                    <img style="margin-left: 60px; width: 80%;" src="../Picture/thetourist.png" alt="">
+
+                    <p class="name">⭐旅館特點</p>
+                    <ol>
+                        <li>Check in time start from 15:00</li>
+                        <br>
+                        <li>免費咖啡兌換，時段:0700-1800</li>
+                        <br>
+                        <li>洗衣60分200日圓，烘衣30分200日圓</li>
+                    </ol>
+                </div>
+                <hr>
+                <div>
+                    <pre style="font-size: 35px; color: #ffffff; text-align: center;">京都: 清水寺</pre>
+                    <img style="margin-left: 60px; width: 80%;" src="../Picture/kyotogotel.jpg" alt="">
+                    <p class="name">⭐旅館特點</p>
+                    <ol>
+                        <li>Check in time start from 1:00</li>
+                        <br>
+                        <li>頂樓陽台可使用(有沙發可遠眺清水寺)</li>
+                        <br>
+                        <li>洗衣30分100日圓，烘衣30分200日圓</li>
+                    </ol>
+                </div>
+                <hr>
+                <div>
+                    <pre style="font-size: 35px; color: #ffffff; text-align: center;">大阪: 心齋橋</pre>
+                    <img style="margin-left: 60px; width: 80%;" src="../Picture/OSAKAhotel.jpg" alt="">
+                    <p class="name">⭐旅館特點</p>
+                    <ol>
+                        <li>Check in time start from 1:00</li>
+                        <br>
+                        <li>住家式layout可開火</li>
+                        <br>
+                        <li>洗衣30分100日圓，烘衣30分200日圓</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="column">
+                <h2>景點</h2>
+                <pre style="font-size: 35px; color: #ffffff;  text-align: center;">東京(3Days)</pre>
+                <div class="scroll-container">
+                    <a target="_blank" href="../Picture/raimon.jpg">
+                        <img src="../Picture/raimon.jpg" alt=""></a>
+                    <a target="_blank" href="../Picture/odawara.jpg">
+                        <img src="../Picture/odawara.jpg" alt=""></a>
+                    <a target="_blank" href="../Picture/Sakura.jpg">
+                        <img src="../Picture/Sakura.jpg" alt=""></a>
+                </div>
+            </div>
+
+            <div class="column">
+                <pre style="font-size: 35px; color: #ffffff;  text-align: center;">京都(8Days)</pre>
+                <div class="scroll-container">
+                    <a target="_blank" href="../Picture/jinnku.jpg">
+                        <img src="../Picture/jinnku.jpg" alt=""></a>
+                    <a target="_blank" href="../Picture/neko.jpg">
+                        <img src="../Picture/neko.jpg" alt=""></a>
+                    <a target="_blank" href="../Picture/temple.jpg">
+                        <img src="../Picture/temple.jpg" alt=""></a>
+                </div>
+            </div>
+
+            <div class="column">
+                <pre style="font-size: 35px; color: #ffffff;  text-align: center;">大阪(3Days)</pre>
+                <div class="scroll-container">
+                    <a target="_blank" href="../Picture/biglion.jpg">
+                        <img src="../Picture/biglion.jpg" alt=""></a>
+                    <a target="_blank" href="../Picture/Osakajo.jpg">
+                        <img src="../Picture/Osakajo.jpg" alt=""></a>
+                    <a target="_blank" href="../Picture/kuligo.jpg">
+                        <img src="../Picture/kuligo.jpg" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Get the elements with class="column"
+        var elements = document.getElementsByClassName("column");
+
+        // Declare a loop variable
+        var i;
+
+        // List View
+        function listView() {
+            for (i = 0; i < elements.length; i++) {
+                elements[i].style.width = "80%";
+            }
+        }
+
+        // Grid View
+        function gridView() {
+            for (i = 0; i < elements.length; i++) {
+                elements[i].style.width = "50%";
+            }
+        }
+
+        /* Optional: Add active class to the current button (highlight it) */
+        var container = document.getElementById("btnContainer");
+        var btns = container.getElementsByClassName("btn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("active");
+                current[0].className = current[0].className.replace(" active", "");
+                this.className += " active";
+            });
+        }
+    </script>
+</body>
+
+
+</html>

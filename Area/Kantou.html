@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>關東地區</title>
+    <link rel="stylesheet" href="../CSS/menuhover.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&display=swap');
+
+        /* Grid排版 */
+        .item1 {
+            grid-area: header;
+            text-align: center;
+        }
+
+        .item3 {
+            grid-area: main;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        .item4 {
+            grid-area: footer;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-areas:
+                'header header header header header header'
+                'main main main main main main'
+                'footer footer footer footer footer footer';
+            gap: 10px;
+            background-image: url(../Picture/backgroundimage.jpg);
+            padding: 10px;
+        }
+
+        .grid-container>div {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 0px;
+            font-size: 1rem;
+        }
+
+        /* header */
+        #header {
+            background-image: url(../Picture/header_Kantou.jpg);
+            background-size: contain;
+            background-color: rgba(0, 0, 0, .2);
+            background-blend-mode: multiply;
+        }
+
+        /* header below pic */
+        .Kantou>img {
+            width: 100%;
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+            background-size: cover;
+
+        }
+
+        .Tokyo>img {
+            width: 100%;
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+            background-size: cover;
+        }
+
+        /* each tag css */
+        h1 {
+            font-size: 400%;
+            text-align: center;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        h3 {
+            font-size: 50px;
+            text-align: center;
+
+        }
+
+        h5 {
+            font-size: 25px;
+            text-align: center;
+        }
+        p{
+            font-size: 30px;
+            text-align: center;
+        }
+
+        /* table */
+        table,
+        tr,
+        th,
+        td {
+            border: 3px solid black;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 25px;
+            font-family: 'Noto Sans JP', sans-serif;
+            
+        }
+
+        td>img {
+            width: 50%;
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        td>input {
+            width: 90px;
+            height: 30px;
+            font-size: 25px;
+            text-align: center;
+            border: auto;
+            border-radius: 10px;
+
+        }
+
+        /* button效果 */
+        .tryit {
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            min-width: 200px;
+            background: #FFFFFF;
+            border: 2px solid goldenrod;
+            border-radius: 4px;
+            color: goldenrod;
+            font-size: 1rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            overflow: hidden;
+            transition: 0.5s;
+            padding: 10px 20px;
+        }
+
+        .tryit span {
+            position: absolute;
+            width: 25%;
+            height: 100%;
+            background-color: goldenrod;
+            transform: translateY(150%);
+            border-radius: 50%;
+            left: calc((var(--n) - 1) * 25%);
+            transition: 0.5s;
+            transition-delay: calc((var(--n) - 1) * 0.1s);
+            z-index: -1;
+        }
+
+        .tryit:hover,
+        .tryit:focus {
+            color: black;
+        }
+
+        .tryit:hover span {
+            transform: translateY(0) scale(2);
+        }
+
+        .tryit span:nth-child(1) {
+            --n: 1;
+        }
+
+        .tryit span:nth-child(2) {
+            --n: 2;
+        }
+
+        .tryit span:nth-child(3) {
+            --n: 3;
+        }
+
+        .tryit span:nth-child(4) {
+            --n: 4;
+        }
+
+
+        .calculate {
+            border: 0;
+            background-color: #0d94e2;
+            color: #fff;
+            border-radius: 10px;
+            font-size: 32px;
+            min-width: 100px;
+        }
+
+        .calculate:hover {
+            box-shadow: 0px 15px 25px -5px #0057ab;
+            transform: scale(1.03);
+        }
+
+        .calculate:active {
+            box-shadow: 0px 4px 8px #0065c8;
+            transform: scale(0.98);
+        }
+
+
+        .tab>button {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: lighter;
+
+        }
+
+        .back-to-home {
+            position: fixed;
+            height: 90px;
+            width: 90px;
+            bottom: 20px;
+            right: 20px;
+            opacity: 0.5;
+            border: solid black;
+
+        }
+        .clearfix{
+            height: 1000px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <h1 style="font-size: 80px">關東地區</h1>
+    </div>
+    <a href="../Index2_final.html"><img src="../Picture/homepage.jpg" alt="" class="back-to-home"></a>
+    <div class="grid-container">
+        <div class="item1" style="display: flex;">
+            <div class="Kantou"><img src="../Picture/kantou1_Resize Image.png" alt=""></div>
+            <div class="Tokyo"><img src="../Picture/Tokyo.jpg" alt=""></div>
+        </div>
+        <div class="item3">
+            <div class="tab">
+                <button class="tablinks" onmouseover="openCity(event, 'Chicket')">機 票 購 買</button>
+                <button class="tablinks" onmouseover="openCity(event, 'Spot')">景 點 規 劃</button>
+                <button class="tablinks" onmouseover="openCity(event, 'Bookingroom')">預 定 住 宿</button>
+                <button class="tablinks" onmouseover="openCity(event, 'Trafficid')">交 通 規 劃</button>
+            </div>
+
+            <div id="Chicket" class="tabcontent" style="text-align: center">
+                <table>
+                    <h3>機 票 購 買</h3>
+                    <tr>
+                        <th>TYPE</th>
+                        <th>Logo</th>
+                        <th>Example</th>
+                        <th>Advantage</th>
+                        <th>Disadvantage</th>
+
+                    </tr>
+                    <tr>
+                        <td>航空公司預定</td>
+                        <td>
+                            <img src="../Picture/evaair.jpg" alt="">
+                            <img src="../Picture/tigerair.png" alt="">
+                        </td>
+                        <td>
+                            <p>傳統航空:長榮</p>
+                            <p>廉價航空:虎航</p>
+
+                        </td>
+                        <td>搭配會員或是信用卡可以累積回饋</td>
+                        <td>無法比較多家航空公司票價</td>
+                    </tr>
+                    <tr>
+                        <td>第三方網站</td>
+                        <td>
+                            <img src="../Picture/skyscanner.png" alt="">
+                            <img src="../Picture/googlefly.png" alt="">
+                        </td>
+                        <td>
+                            <p>Skyscanner</p>
+                            <p>Googlefly</p>
+                        </td>
+                        <td>可以一覽旅行日期不同家航空公司票價及航班資訊</td>
+                        <td>通常標示最低優惠會跳轉到第三方網站進行購票，退票或換票容易有問題</td>
+                    </tr>
+
+
+                </table>
+            </div>
+
+            <div id="Spot" class="tabcontent" style="text-align: center;">
+                <h3>景 點 規 劃 - 標 記 景 點</h3>
+                <iframe
+                    src="https://www.google.com/maps/d/u/0/embed?mid=13DyUA4y1RCUJuFQUIkCFP7u-6JZdC5k&ehbc=2E312F&noprof=1"
+                    width="60%" height="200%"></iframe>
+            </div>
+            <div id="Bookingroom" class="tabcontent" style="text-align: center;">
+                <h3>預 定 住 宿</h3>
+                <h5>(從上張圖中，找標示點圍繞最高的地方)</h5>
+                <img style="width:35%; display: inline-block;" src="../Picture/range.png" alt="">
+                <img style="width:50%; display: inline-block;" src="../Picture/trivago.png" alt="">
+            </div>
+
+            <div id="Trafficid" class="tabcontent">
+                <h3>交 通 規 劃</h3>
+                <h5>根據最常使用的交通工具買票券(JRpass/地鐵巴士周遊券)</h5>
+                <table id="tableforcal" style="text-align: center;">
+                    <tr>
+                        <th>Day</th>
+                        <th>Location</th>
+                        <th>StayTime</th>
+                        <th>Traffic type</th>
+                        <th>Traffic price</th>
+                        <th rowspan="6">Pass</th>
+                        <th id="color1">JR</th>
+                        <th id="color2">Metro</th>
+
+                    </tr>
+                    <tr>
+                        <td>Day1</td>
+                        <td>機場->旅館</td>
+                        <td>07-09</td>
+                        <td style="color: green;" class="traffictype"><b>JR</b></td>
+                        <td><input type="text" id="price1" value="0"></td>
+                        <td rowspan="5"><img style="width: 120px;" src="../Picture/Tokyopass.png" alt=""></td>
+                        <td rowspan="5"><img style="width: 120px;" src="../Picture/Metropas.jpg" alt=""></td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>旅館->神社</td>
+                        <td>09-12</td>
+                        <td style="color: rgb(18, 163, 221);" class="traffictype"><b>Metro</b></td>
+                        <td><input type="text" id="price2" value="0"></td>
+
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>明治神宮->表參道(吃中餐)</td>
+                        <td>12-13</td>
+                        <td class="traffictype">步行</td>
+                        <td><input type="text" id="price3" value="0"></td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>表參道->新宿御苑(下午)</td>
+                        <td>13-17</td>
+                        <td style="color: rgb(18, 163, 221);" class="traffictype"><b>Metro</b></td>
+                        <td><input type="text" id="price4" value="0"></td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>澀谷(吃晚餐)->旅館</td>
+                        <td>17-20</td>
+                        <td style="color: green;" class="traffictype"><b>JR</b></td>
+                        <td><input type="text" id="price5" value="0"></td>
+
+                    </tr>
+                    <!-- <tr>
+                        <td>Day2</td>
+                        <td>....</td>
+                        <td></td>
+                        <td></td>
+                        <td><input type="text" id="price6" value="0"></td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>....</td>
+                        <td></td>
+                        <td></td>
+                        <td><input type="text" id="price7" value="0"></td>
+
+                    </tr>
+                    <tr>
+
+                        <td></td>
+                        <td>...</td>
+                        <td></td>
+                        <td></td>
+                        <td><input type="text" id="price8" value="0"></td>
+
+                    </tr> -->
+                    <tr>
+                        <td rowspan="3"><button class="calculate" onclick="calculatenumber()">計算</button></td>
+                        <td colspan="3">JR</td>
+                        <td><input type="text" id="price9" readonly></td>
+                        <td rowspan="9">票券費用</td>
+                        <td rowspan="9"><input type="text" value="3000" id="jrcost"></td>
+                        <td rowspan="9"><input type="text" value="2000" id="metrocost"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Metro</td>
+                        <td><input type="text" id="price10" readonly></td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="3">others</td>
+                        <td><input type="text" id="price11" readonly></td>
+
+                    </tr>
+                </table>
+                <hr>
+                <div style="text-align: center;">
+                    <a href="./column.html" class="tryit">
+                        try yourself
+                        <span></span><span></span><span></span><span></span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+        <div class="item4">
+            <h3 style="text-align: center;">推 薦 旅 行 紀 錄 App</h3>
+            <br>
+            <div style="display: inline-flex;">
+                <div class="app" style="flex: 3; text-align: center;">
+                    <img src="../Picture/wishtripbanner.png" alt="">
+                    <p>如果你喜歡健行、騎車、散步、跑步、划船、滑雪、開車出遊或四處探索，這就是為你量身打造的活動記錄應用程式。
+                        100% 免費，而且不需訂閱。</p>
+                    <iframe width="700" height="315" src="https://www.youtube.com/embed/gf_BdVLFAtc?si=uN78OCHj138ybJP-"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </div>
+                <div class="app_photo" style="flex: 7; text-align: center;">
+                    <img style="width:65%; min-width: 400px;" src="../Picture/tokyotemplt.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../JS/sidemenu.js"></script>
+    <script>
+
+        function calculatenumber() {
+            var traffictype = document.getElementsByClassName('traffictype');
+            var traffictyper_set = [];
+
+            for (i = 0; i < traffictype.length; i++) {
+                traffictyper_set.push(traffictype[i].innerText);
+            }
+            var traffictyper_setnumber = Array.from(new Set(traffictyper_set));
+            //裡面存幾個traffic 
+            // console.log(traffictyper_setnumber.length)
+
+            //table class全部叫進來
+            var x = document.getElementById("tableforcal")
+            //console.log(x.rows.length)
+            var Metro = 0;
+            var JR = 0;
+            var others = 0;
+            for (i = 1; i < x.rows.length - 3; i++) {
+                if (x.rows[i].children[3].innerText == "JR") {
+                    JR += parseInt(x.rows[i].children[4].children[0].value);
+                }
+                else if (x.rows[i].children[3].innerText == "Metro") {
+                    Metro += parseInt(x.rows[i].children[4].children[0].value);
+                } else {
+                    others += parseInt(x.rows[i].children[4].children[0].value);
+
+                }
+
+            }
+
+            if (JR > parseInt(jrcost.value)) {
+                document.getElementById("color1").style.backgroundColor = "green";
+
+            } else {
+                document.getElementById("color1").style.backgroundColor = "red";
+            }
+            if (Metro > parseInt(metrocost.value)) {
+                document.getElementById("color2").style.backgroundColor = "green";
+
+            } else {
+                document.getElementById("color2").style.backgroundColor = "red";
+            }
+
+
+            return price9.value = JR, price10.value = Metro, price11.value = others;
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>
